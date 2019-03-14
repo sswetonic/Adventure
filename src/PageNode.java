@@ -1,27 +1,51 @@
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class PageNode {
-    private Integer data;
+    private Integer page;
+    private String text;
+    private boolean isEnding;
     private List<PageNode> children = new ArrayList<>();
 
-    public PageNode(Integer data) {
-        this.data = data;
+    public PageNode(Integer page, String text, boolean isEnding) {
+
+        this.page = page;
+        this.text = text;
+        this.isEnding = isEnding;
     }
 
-    public Integer getData() {
-        return data;
+    public Integer getPage() {
+        return page;
     }
 
-    public void setData(Integer data) {
-        this.data = data;
+    public String getText() { return text; }
+
+    public boolean getIsEnding() { return isEnding; }
+
+    List<PageNode> getChildren() { return children; }
+
+    public void setPage(Integer data) {
+        this.page = data;
     }
 
-    List<PageNode> getChildren() {
-        return children;
-    }
+    public void setText(String text) { this.text = text; }
+
+    public void setIsEnding(boolean isEnding) { this.isEnding = isEnding; }
+
+
 
     public void addChild(PageNode child) {
         children.add(child);
+    }
+
+    public boolean hasChild(Integer page) {
+        for (PageNode node : children) {
+            if (node.getPage().equals(page)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

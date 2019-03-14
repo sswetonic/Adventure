@@ -5,26 +5,44 @@ import java.util.Stack;
 public class PageTree {
     private PageNode root;
 
+    public PageTree() { root = null; }
+
     public PageTree(Integer rootData) {
-        root = new PageNode(rootData);
+        root = new PageNode(rootData, "", false);
     }
 
     public PageTree(PageNode root) {
         this.root = root;
     }
 
-    public PageNode getNode(Integer data) {
+    public PageNode getRoot() { return root; }
+
+    public void setRoot(PageNode root) { this.root = root; }
+
+    //Returns a PageNode by the page number
+    public PageNode getPageNode(Integer page) {
         Queue<PageNode> q = new LinkedList<>();
         q.add(root);
         while(!q.isEmpty()) {
             PageNode current = q.remove();
-            if (current.getData().equals(data)) {
+            if (current.getPage().equals(page)) {
                 return current;
             }
             q.addAll(current.getChildren());
 
         }
         return null;
+    }
+
+    public void print() {
+        Queue<PageNode> q = new LinkedList<>();
+        q.add(root);
+        while(!q.isEmpty()) {
+            PageNode current = q.remove();
+            System.out.println(current.getText());
+            q.addAll(current.getChildren());
+
+        }
     }
 
 
