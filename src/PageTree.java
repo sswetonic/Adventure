@@ -1,6 +1,5 @@
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.Stack;
 
 public class PageTree {
     private PageNode root;
@@ -33,17 +32,4 @@ public class PageTree {
         }
         return null;
     }
-
-    public void print() {
-        Queue<PageNode> q = new LinkedList<>();
-        q.add(root);
-        while(!q.isEmpty()) {
-            PageNode current = q.remove();
-            System.out.println(current.getText());
-            q.addAll(current.getChildren());
-
-        }
-    }
-
-
 }
