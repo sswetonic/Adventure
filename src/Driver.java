@@ -17,7 +17,7 @@ public class Driver {
     }
 
     public void playFrom(int pageNumber) {
-        playthrough.truncateChoices(pageNumber);
+        playthrough.truncateChoices();
         playthrough.playGame(String.valueOf(pageNumber));
         showPath();
     }
@@ -28,7 +28,7 @@ public class Driver {
                 String.valueOf(page.getPage())
         ).collect(Collectors.joining("->")));
     }
-    /*
+
     public void cheat(int desiredEnding) {
         List<PageNode> path = book.cheat(desiredEnding);
         System.out.println("A way to get there would be:");
@@ -36,7 +36,7 @@ public class Driver {
                 String.valueOf(page.getPage())
         ).collect(Collectors.joining("->")));
     }
-    */
+
     public static void main(String[] args) throws FileNotFoundException {
         Driver driver = new Driver();
         driver.play();
@@ -57,7 +57,7 @@ public class Driver {
 
             } else if (choice.startsWith("cheat")) {
                 int pageNumber = Integer.valueOf(choice.split(" ")[1].trim());
-                //driver.cheat(pageNumber);
+                driver.cheat(pageNumber);
             }
 
         } while (!choice.equals("quit"));

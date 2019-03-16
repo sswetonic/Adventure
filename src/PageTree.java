@@ -1,4 +1,6 @@
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 public class PageTree {
@@ -31,5 +33,31 @@ public class PageTree {
 
         }
         return null;
+    }
+
+    List<PageNode> cheat(int desiredEnding) {
+        List<PageNode> choices = new ArrayList<>();
+        findPath(root, desiredEnding, choices);
+        return choices;
+    }
+
+    //Not fully working :(
+    boolean findPath(PageNode n, int desiredEnding, List<PageNode> choices) {
+        if (n.getChildren().size() == 0) {
+            if (n.getPage() == desiredEnding) {
+                choices.add(n);
+                return true;
+            } else {
+                return false;
+            }
+
+        } else {
+            for (PageNode node : n.getChildren()) {
+                if (findPath(node, desiredEnding, choices)) {
+                    choices.add(node);
+                }
+            }
+            return false;
+        }
     }
 }
